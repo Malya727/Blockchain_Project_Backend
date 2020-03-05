@@ -14,3 +14,13 @@ def get_candidate_details(voterid):
     collection2 = db.Candidate_Details
     res = collection2.find({"constituency": constituency_name},{"_id":0})
     return [r for r in res]
+
+def get_constituency_names():
+    collection = db.Candidate_Details
+    constitu = collection.distinct('constituency')
+    return [c for c in constitu]
+
+def candidates_for_constituency(const_name):
+    collection2 = db.Candidate_Details
+    res = collection2.find({"constituency": const_name},{"_id":0})
+    return [r for r in res]

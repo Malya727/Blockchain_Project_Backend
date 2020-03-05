@@ -16,5 +16,15 @@ def get_candidate_details(voterid):
     res = db.get_candidate_details(voterid)
     return jsonify({"details":res})
 
+@app.route('/getConstituency')
+def get_constituency_names():
+    res = db.get_constituency_names()
+    return jsonify({"names":res})
+
+@app.route('/candidateforconstitu/<constname>')
+def candidates_for_constituency(constname):
+    res = db.candidates_for_constituency(constname)
+    return jsonify({"names":res})
+
 if __name__ == "__main__":
     app.run()
