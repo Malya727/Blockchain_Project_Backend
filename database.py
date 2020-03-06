@@ -24,3 +24,22 @@ def candidates_for_constituency(const_name):
     collection2 = db.Candidate_Details
     res = collection2.find({"constituency": const_name},{"_id":0})
     return [r for r in res]
+
+def get_voter_gender_details(constName):
+    collection2 = db.Voter_Details
+    res = collection2.aggregate([
+
+        {"$match":{"constituency": constName}
+        },
+        {"$project": {
+            "male": {"$cond": [{"$eq": ["$gender", "Male"]}, 1, 0]},
+            "female": {"$cond": [{"$eq": ["$gender", "Female"]}, 1, 0]},
+        }},
+        {"$group": { "_id": "null", "male": {"$sum": "$male"},
+                                "female": {"$sum": "$female"},
+                                "total": {"$sum": 1},
+        }},
+        {"$project":{"male":"$male","female":"$female", "total": "$total", "_id":0}}
+
+        ])
+    return [r for r in res]

@@ -26,5 +26,10 @@ def candidates_for_constituency(constname):
     res = db.candidates_for_constituency(constname)
     return jsonify({"names":res})
 
+@app.route('/getVoterGenderCount/<constName>')
+def get_voters_gender_count(constName):
+    res = db.get_voter_gender_details(constName)
+    return jsonify({"gender":res})
+
 if __name__ == "__main__":
     app.run()
