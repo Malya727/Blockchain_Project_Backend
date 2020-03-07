@@ -13,8 +13,8 @@ def index():
 
 @app.route('/getCandidateDetails/<voterid>')
 def get_candidate_details(voterid):
-    res = db.get_candidate_details(voterid)
-    return jsonify({"details":res})
+    res,name = db.get_candidate_details(voterid)
+    return jsonify({"name":name},{"details":res})
 
 @app.route('/getConstituency')
 def get_constituency_names():
@@ -26,10 +26,26 @@ def candidates_for_constituency(constname):
     res = db.candidates_for_constituency(constname)
     return jsonify({"names":res})
 
-@app.route('/getVoterGenderCount/<constName>')
+@app.route('/GenderwiseCountforConst/<constName>')
 def get_voters_gender_count(constName):
     res = db.get_voter_gender_details(constName)
     return jsonify({"gender":res})
+
+@app.route('/totalGenderwiseCount')
+def get_voter_gender_details():
+    res = db.get_voter_gender_details_total()
+    return jsonify({"gender":res})
+
+@app.route('/UpdateAnalytics/<voterid>')
+def update_vote_analytics(voterid):
+    res = db.update_vote_analytics(voterid)
+    return jsonify({"res":res})
+
+@app.route('/VotedGenderwiseCountforConst/<constName>')
+def get_voted_gender_details(constName):
+    res = db.get_voted_gender_details(constName)
+    return jsonify({"gender":res})
+
 
 if __name__ == "__main__":
     app.run()
