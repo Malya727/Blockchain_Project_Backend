@@ -39,7 +39,7 @@ def get_voter_gender_details():
 @app.route('/UpdateAnalytics/<voterid>')
 def update_vote_analytics(voterid):
     res = db.update_vote_analytics(voterid)
-    return jsonify({"res":res})
+    return "<h1>Updated Successfully!</h1>"
 
 @app.route('/VotedGenderwiseCountforConst/<constName>')
 def get_voted_gender_details(constName):

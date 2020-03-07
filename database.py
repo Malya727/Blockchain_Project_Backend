@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://react:react@malya-gso2y.mongodb.net/test?retryWrites=true&w=majority/")
+client = pymongo.MongoClient("mongodb+srv://react:react@malya-gso2y.mongodb.net/test?retryWrites=true&w=majority")
 
 db = client.Election_Blockchain
 
