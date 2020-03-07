@@ -14,7 +14,7 @@ def index():
 @app.route('/getCandidateDetails/<voterid>')
 def get_candidate_details(voterid):
     res,name = db.get_candidate_details(voterid)
-    return jsonify({"name":name},{"details":res})
+    return jsonify({"name":name,"details":res})
 
 @app.route('/getConstituency')
 def get_constituency_names():
