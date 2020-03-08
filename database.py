@@ -129,4 +129,32 @@ def get_voted_gender_details(consti):
     else:
         return "No Data Found"
 
+def get_voted_gender_details_overall():
+    collection2 = db.Voter_Statistics
+    res = collection2.aggregate([
+        {"$project": {
+            "male": {"$cond": [{"$eq": ["$gender", "Male"]}, 1, 0]},
+            "female": {"$cond": [{"$eq": ["$gender", "Female"]}, 1, 0]},
+        }},
+        {"$group": { "_id": "null", "male": {"$sum": "$male"},
+                                "female": {"$sum": "$female"},
+                                "total": {"$sum": 1},
+        }},
+        {"$project":{"male":"$male","female":"$female", "total": "$total", "_id":0}}
+
+        ])
+    re = [f for f in res]
+    if(len(re) >= 1):
+        ans = re[0]
+        maleCount = ans["male"]
+        femaleCount = ans["female"]
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , maleCount])
+        analysis.append(["Female" , femaleCount])
+        return analysis
+    else:
+        return "No Data Found"
+
+
 

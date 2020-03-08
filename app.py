@@ -26,9 +26,19 @@ def candidates_for_constituency(constname):
     res = db.candidates_for_constituency(constname)
     return jsonify({"names":res})
 
+@app.route('/UpdateAnalytics/<voterid>')
+def update_vote_analytics(voterid):
+    res = db.update_vote_analytics(voterid)
+    return "<h1>Updated Successfully!</h1>"
+
 @app.route('/GenderwiseCountforConst/<constName>')
 def get_voters_gender_count(constName):
     res = db.get_voter_gender_details(constName)
+    return jsonify({"gender":res})
+
+@app.route('/VotedGenderwiseCountforConst/<constName>')
+def get_voted_gender_details(constName):
+    res = db.get_voted_gender_details(constName)
     return jsonify({"gender":res})
 
 @app.route('/totalGenderwiseCount')
@@ -36,15 +46,10 @@ def get_voter_gender_details():
     res = db.get_voter_gender_details_total()
     return jsonify({"gender":res})
 
-@app.route('/UpdateAnalytics/<voterid>')
-def update_vote_analytics(voterid):
-    res = db.update_vote_analytics(voterid)
-    return "<h1>Updated Successfully!</h1>"
-
-@app.route('/VotedGenderwiseCountforConst/<constName>')
-def get_voted_gender_details(constName):
-    res = db.get_voted_gender_details(constName)
-    return jsonify({"gender":res})
+@app.route('/VotedGenderWiseCountforOverall')
+def get_voted_gender_details_overall():
+    res = db.get_voted_gender_details_overall()
+    return jsonify({"result":res})
 
 
 if __name__ == "__main__":
