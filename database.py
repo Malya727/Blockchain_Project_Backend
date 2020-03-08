@@ -47,7 +47,18 @@ def get_voter_gender_details(constName):
         {"$project":{"male":"$male","female":"$female", "total": "$total", "_id":0}}
 
         ])
-    return [r for r in res]
+    re = [f for f in res]
+    if(len(re) >= 1):
+        ans = re[0]
+        maleCount = ans["male"]
+        femaleCount = ans["female"]
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , maleCount])
+        analysis.append(["Female" , femaleCount])
+        return analysis
+    else:
+        return "No Data Found"
 
 
 def get_voter_gender_details_total():
@@ -64,7 +75,18 @@ def get_voter_gender_details_total():
         {"$project":{"male":"$male","female":"$female", "total": "$total", "_id":0}}
 
         ])
-    return [r for r in res]
+    re = [f for f in res]
+    if(len(re) >= 1):
+        ans = re[0]
+        maleCount = ans["male"]
+        femaleCount = ans["female"]
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , maleCount])
+        analysis.append(["Female" , femaleCount])
+        return analysis
+    else:
+        return "No Data Found"
 
 def update_vote_analytics(voterid):
     collection = db.Voter_Statistics 
@@ -94,4 +116,17 @@ def get_voted_gender_details(consti):
         {"$project":{"male":"$male","female":"$female", "total": "$total", "_id":0}}
 
         ])
-    return [r for r in res]
+    re = [f for f in res]
+    if(len(re) >= 1):
+        ans = re[0]
+        maleCount = ans["male"]
+        femaleCount = ans["female"]
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , maleCount])
+        analysis.append(["Female" , femaleCount])
+        return analysis
+    else:
+        return "No Data Found"
+
+
