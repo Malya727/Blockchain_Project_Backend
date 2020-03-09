@@ -58,7 +58,11 @@ def get_voter_gender_details(constName):
         analysis.append(["Female" , femaleCount])
         return analysis
     else:
-        return "No Data Found"
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , 0])
+        analysis.append(["Female" , 0])
+        return analysis
 
 
 def get_voter_gender_details_total():
@@ -86,7 +90,11 @@ def get_voter_gender_details_total():
         analysis.append(["Female" , femaleCount])
         return analysis
     else:
-        return "No Data Found"
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , 0])
+        analysis.append(["Female" , 0])
+        return analysis
 
 def update_vote_analytics(voterid):
     collection = db.Voter_Statistics 
@@ -127,7 +135,11 @@ def get_voted_gender_details(consti):
         analysis.append(["Female" , femaleCount])
         return analysis
     else:
-        return "No Data Found"
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , 0])
+        analysis.append(["Female" , 0])
+        return analysis
 
 def get_voted_gender_details_overall():
     collection2 = db.Voter_Statistics
@@ -154,7 +166,11 @@ def get_voted_gender_details_overall():
         analysis.append(["Female" , femaleCount])
         return analysis
     else:
-        return "No Data Found"
+        analysis = []
+        analysis.append(["Gender","Voter Count"])
+        analysis.append(["Male" , 0])
+        analysis.append(["Female" , 0])
+        return analysis
 
 
 
